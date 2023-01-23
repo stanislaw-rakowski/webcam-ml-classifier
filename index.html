@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Webcam face ML</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<nav>
+			<h1>Webcam Machine Learning face recognizer</h1>
+		</nav>
+
+		<main>
+			<p id="status">Awaiting TF.js load</p>
+
+			<video id="webcam" autoplay></video>
+
+			<canvas id="canvas" width="640px" height="480px"></canvas>
+
+			<div class="button-group">
+				<button id="enableCam">Enable Webcam</button>
+				<div id="data-buttons">
+					<button class="dataCollector" data-1hot="0" data-name="Class 1">
+						Gather Class 1 Data
+					</button>
+					<button class="dataCollector" data-1hot="1" data-name="Class 2">
+						Gather Class 2 Data
+					</button>
+				</div>
+				<button id="train">Train &amp; Predict!</button>
+				<button id="reset">Reset</button>
+			</div>
+
+			<div id="training" class="removed">
+				<label id="training-label" for="training-progress">0/10</label>
+				<progress id="training-progress" value="0" max="9"></progress>
+			</div>
+
+			<ol>
+				<li>First enable webcam and allow access when asked.</li>
+				<li>
+					Now find an object, point cam at it, click and hold gather class 1
+					data button to gather at least 30 samples.
+				</li>
+				<li>
+					Repeat for class 2 with a different object of interest. Get similar
+					number of samples.
+				</li>
+				<li>
+					Click train and predict and wait while the model is trained live in
+					your browser. No data is sent to server.
+				</li>
+				<li>
+					Once trained you will see live predictions appear above the video for
+					what it thinks it sees.
+				</li>
+			</ol>
+		</main>
+
+		<script type="module" src="/src/main.ts"></script>
+	</body>
+</html>
