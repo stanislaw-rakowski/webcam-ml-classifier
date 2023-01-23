@@ -51,7 +51,13 @@ const trainingDataInputs: any[] = [];
 const trainingDataOutputs: any[] = [];
 const examplesCount: number[] = [];
 
-const mobilenet = await loadMobileNetModel();
+let mobilenet: Awaited<ReturnType<typeof loadMobileNetModel>>;
+
+async function loadModel() {
+	mobilenet = await loadMobileNetModel();
+}
+
+loadModel();
 
 logStatus("MobileNet v3 loaded successfully!");
 
@@ -176,7 +182,7 @@ function enableCam() {
 	getWebcamStream()
 		.then(async () => {
 			faceModel = await blazeface.load();
-			setInterval(detectFaces, 100);
+			setInterval(detectFaces, 50);
 		})
 		.then(() => {
 			videoPlaying = true;
